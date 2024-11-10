@@ -4,10 +4,8 @@ import com.raj.OTP.verification.Service.EmailService;
 import com.raj.OTP.verification.Service.OTPService;
 import com.raj.OTP.verification.TempStore.OTPStorage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/otp")
@@ -18,6 +16,10 @@ public class OTPController {
 
     @Autowired
     private EmailService emailService;
+    @GetMapping("/login")
+    public String getOTP(Model model){
+        return "login";
+    }
     @PostMapping("/generate")
     public String generateAndSendOTP(@RequestParam("email") String mail){
         String otp = otpService.generateOTP();
