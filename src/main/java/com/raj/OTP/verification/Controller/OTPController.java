@@ -16,10 +16,7 @@ public class OTPController {
 
     @Autowired
     private EmailService emailService;
-    @GetMapping("/login")
-    public String getOTP(Model model){
-        return "login";
-    }
+
     @PostMapping("/generate")
     public String generateAndSendOTP(@RequestParam("email") String mail){
         String otp = otpService.generateOTP();
